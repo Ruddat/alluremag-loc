@@ -1,6 +1,4 @@
-@php
-$live = App\Models\LiveTv::find(1);
-@endphp
+
 
     <!--====== VIDEO NEWS PART START ======-->
 
@@ -15,13 +13,7 @@ $live = App\Models\LiveTv::find(1);
                             </div>
                             <div class="video-news-post-item">
                                 <div class="video-news-post-thumb">
-                                    <img src="{{ asset(('storage/'), $live->live_image) }}" alt="">
 
-                                    <div class="play-btn">
-                                        <a class="video-popup" href="{{ $live->live_title }}"><i class="fab fa-youtube"></i></a>
-                                        <iframe width="560" height="315" src="{{ $live->live_title }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-                                    </div>
                                 </div>
                                 <div class="video-news-post-content">
                                     <div class="post-meta">

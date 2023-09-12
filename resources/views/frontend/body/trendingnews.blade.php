@@ -1,6 +1,3 @@
-@php
-$breaking_news = App\Models\NewsPost::where('status',1)->where('breaking_news',1)->limit(7)->get();
-@endphp
 
 
     <!--====== TRENDING NEWS PART START ======-->
@@ -444,7 +441,7 @@ $breaking_news = App\Models\NewsPost::where('status',1)->where('breaking_news',1
                                                 <span>March 26, 2020</span>
                                             </div>
                                         </div>
-                                        <h4 class="title"><a href="#">Best garden wing supplies for the horticu ltural</a></h4>
+                                        <h4 class="title"><a href="#">{{  GoogleTranslate::trans('Best garden wing supplies for the horticu ltural', app()->getLocale() )  }}</a></h4>
                                         <span>5</span>
                                     </div>
                                 </div>
@@ -455,13 +452,13 @@ $breaking_news = App\Models\NewsPost::where('status',1)->where('breaking_news',1
                                     <div class="gallery_item_content">
                                         <div class="post-meta">
                                             <div class="meta-categories">
-                                                <a href="#">TECHNOLOGY</a>
+                                                <a href="#">{{  GoogleTranslate::trans('TECHNOLOGY', app()->getLocale() )  }}</a>
                                             </div>
                                             <div class="meta-date">
                                                 <span>March 26, 2020</span>
                                             </div>
                                         </div>
-                                        <h4 class="title"><a href="#">Ratiffe to be Director of nation talent Trump ignored</a></h4>
+                                        <h4 class="title"><a href="#">{{  GoogleTranslate::trans('Ratiffe to be Director of nation talent Trump ignored', app()->getLocale() )  }}</a></h4>
                                         <span>6</span>
                                     </div>
                                 </div>
@@ -474,11 +471,4 @@ $breaking_news = App\Models\NewsPost::where('status',1)->where('breaking_news',1
     </section>
 
     <!--====== TRENDING NEWS PART ENDS ======-->
-    @foreach($breaking_news as $item)
-
-
-    <img src="{{ asset('frontend/assets/images/favicon.gif') }}" alt="Logo" title="Logo" width="30px" height="auto">
-    {{ $item->news_title }} </a>
-    @endforeach
-
 

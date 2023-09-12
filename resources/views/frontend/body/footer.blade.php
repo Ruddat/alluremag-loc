@@ -20,7 +20,7 @@
                     <div class="footer-newaletter">
                         <div class="input-box">
                             <input type="text" placeholder="Your email address">
-                            <button type="button">SIGN UP</button>
+                            <button type="button">{{  GoogleTranslate::trans('SIGN UP', app()->getLocale() )  }}</button>
                         </div>
                         <p>We hate spam as much as you do</p>
                     </div>

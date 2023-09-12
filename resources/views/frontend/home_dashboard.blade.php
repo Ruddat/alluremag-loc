@@ -136,7 +136,7 @@
                                     </div>
                                 </div>
                                 <h2 class="title"><a href="#">{{  GoogleTranslate::trans('Japan’s virus success has puzzled the world. Is its luck running out?', app()->getLocale() )  }}</a></h2>
-                                <p>The property, complete with a 30-seat screening room, a 100-seat amphitheater and a swimming pond with sandy beach and outdoor shower…</p>
+                                <p>{{  GoogleTranslate::trans('The property, complete with a 30-seat screening room, a 100-seat amphitheater and a swimming pond with sandy beach and outdoor shower…', app()->getLocale() )  }}</p>
                             </div>
                             <div class="post_play_btn">
                                 <a class="video-popup" href="https://www.youtube.com/watch?v=4mGyYNuG6us" a><i class="fas fa-play"></i></a>
@@ -931,7 +931,7 @@
                         </div>
                     </div>
                     <div class="post-add mt-30">
-                        <a href="#"><img src="{{ asset('frontend/') }}assets/images/ad/ad-1.png" alt="ad"></a>
+                        <a href="#"><img src="{{ asset('frontend/assets/images/ad/ad-1.png') }}" alt="ad"></a>
                     </div>
                     <div class="business-news-post pt-40">
                         <div class="section-title d-flex justify-content-between align-items-center">
@@ -943,7 +943,7 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6">
                                         <div class="business-post-thumb">
-                                            <img src="{{ asset('frontend/') }}assets/images/business-1.jpg" alt="business">
+                                            <img src="{{ asset('frontend/assets/images/business-1.jpg') }}" alt="business">
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-6">
@@ -969,7 +969,7 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6">
                                         <div class="business-post-thumb">
-                                            <img src="{{ asset('frontend/') }}assets/images/business-2.jpg" alt="business">
+                                            <img src="{{ asset('frontend/assets/images/business-2.jpg') }}" alt="business">
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-6">
@@ -1323,7 +1323,7 @@
                                 </div>
                                 <div class="upcoming-matches-post-item d-flex align-items-center">
                                     <div class="upcoming-matches-flag">
-                                        <img src="{{ asset('frontend/') }}assets/images/flag/flag-5.png" alt="flag">
+                                        <img src="{{ asset('frontend/assets/images/flag/flag-5.png') }}" alt="flag">
                                     </div>
                                     <div class="upcoming-matches-content">
                                         <span>Germany <span>VS</span> France</span>
@@ -1364,7 +1364,7 @@
                                     <div class="Categories-content">
                                         <a href="#">
                                             <span>Restaurant</span>
-                                            <img src="assets/images/arrow.svg" alt="">
+                                            <img src="{{ asset('frontend/assets/images/arrow.svg') }}" alt="">
                                         </a>
                                     </div>
                                 </div>
@@ -1373,7 +1373,7 @@
                                     <div class="Categories-content">
                                         <a href="#">
                                             <span>Entertainment</span>
-                                            <img src="assets/images/arrow.svg" alt="">
+                                            <img src="{{ asset('frontend/assets/images/arrow.svg') }}" alt="">
                                         </a>
                                     </div>
                                 </div>
@@ -1382,7 +1382,7 @@
                                     <div class="Categories-content">
                                         <a href="#">
                                             <span>Financial</span>
-                                            <img src="assets/images/arrow.svg" alt="">
+                                            <img src="{{ asset('frontend/assets/images/arrow.svg') }}" alt="">
                                         </a>
                                     </div>
                                 </div>
@@ -1391,7 +1391,7 @@
                                     <div class="Categories-content">
                                         <a href="#">
                                             <span>Business</span>
-                                            <img src="assets/images/arrow.svg" alt="">
+                                            <img src="{{ asset('frontend/assets/images/arrow.svg') }}" alt="">
                                         </a>
                                     </div>
                                 </div>
@@ -1400,22 +1400,22 @@
                                     <div class="Categories-content">
                                         <a href="#">
                                             <span>Scientists</span>
-                                            <img src="assets/images/arrow.svg" alt="">
+                                            <img src="{{ asset('frontend/assets/images/arrow.svg') }}" alt="">
                                         </a>
                                     </div>
                                 </div>
                                 <div class="item">
-                                    <img src="{{ asset('frontend/') }}assets/images/categories-6.jpg" alt="categories">
+                                    <img src="{{ asset('frontend/assets/images/categories-6.jpg') }}" alt="categories">
                                     <div class="Categories-content">
                                         <a href="#">
                                             <span>International’s</span>
-                                            <img src="assets/images/arrow.svg" alt="">
+                                            <img src="{{ asset('frontend/assets/images/arrow.svg') }}" alt="">
                                         </a>
                                     </div>
                                 </div>
                             </div>
                             <div class="sidebar-add pt-35">
-                                <a href="#"><img src="assets/images/ad/ad-2.jpg" alt="ad"></a>
+                                <a href="#"><img src="{{ asset('frontend/assets/images/ad/ad-2.jpg') }}" alt="ad"></a>
                             </div>
                         </div>
                     </div>

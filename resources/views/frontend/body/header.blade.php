@@ -3,10 +3,7 @@
 $cdate = new DateTime();
 @endphp
 
-@php
-$breaking_news = App\Models\NewsPost::where('status',1)->where('breaking_news',1)->limit(20)->orderBy('created_at', 'desc')->get();
-@endphp
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <!--====== HEADER PART START ======-->
 
@@ -19,13 +16,6 @@ $breaking_news = App\Models\NewsPost::where('status',1)->where('breaking_news',1
                             <span>{{  GoogleTranslate::trans('Breaking News', app()->getLocale() )  }}</span>
                             <div class="trending-slider">
 
-                                @foreach($breaking_news as $item)
-                                <div class="trending-item">
-
-                                    <p>{{ Str::limit(GoogleTranslate::trans($item->news_title, app()->getLocale()), 80) }}</p>
-
-                                </div>
-                                @endforeach
 
                             </div>
                         </div>
@@ -81,9 +71,7 @@ $breaking_news = App\Models\NewsPost::where('status',1)->where('breaking_news',1
 
 
 
-        @php
-        $categories = App\Models\Category::orderBy('category_name','ASC')->limit(7)->get();
-        @endphp
+
 
 
         <div class="header-menubar">
@@ -95,29 +83,7 @@ $breaking_news = App\Models\NewsPost::where('status',1)->where('breaking_news',1
                                 <ul>
 
 
-                                        @foreach($categories as $category)
 
-                                        <li><a class="" href="{{ $category->category_slug }}">{{  GoogleTranslate::trans($category->category_name, app()->getLocale() )  }}</a>
-
-
-
-                                            @php
-                                            $subcategories = App\Models\Subcategory::where('category_id',$category->id)->orderBy('subcategory_name','ASC')->get();
-                                            @endphp
-
-                                        @if(!$subcategories->isEmpty())
-
-                                        <ul>
-                                            @foreach($subcategories as $subcategory)
-                                            <li> <a href=" ">{{ $subcategory->subcategory_name }}</a></li>
-                                            @endforeach
-
-                                        </ul>
-                                        @else
-                                        @endif
-                                    </li>
-
-                                    @endforeach
 
                                     <li><a href="">Pages</a>
                                         <ul>
