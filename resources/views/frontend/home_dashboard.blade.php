@@ -12,7 +12,6 @@
 
     <!--====== Title ======-->
     <title>AllureMag - News Magazine Template</title>
-{{ asset('frontend/') }}
     <!--====== Favicon Icon ======-->
     <link rel="shortcut icon" href="{{ asset('frontend/assets/images/fabicon.png') }}
     " type="image/png">
