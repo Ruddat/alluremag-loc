@@ -53,13 +53,13 @@ $breaking_news = App\Models\NewsPost::where('status',1)->where('breaking_news',1
                     <div class="col-lg-4">
                         <div class="logo">
                             <a href="index.html">
-                                <img src="assets/images/logo.png" alt="">
+                                <img src="{{ asset('frontend/assets/images/logo.png') }}" alt="">
                             </a>
                         </div>
                     </div>
                     <div class="col-lg-8">
                         <div class="header-centerbar-ad">
-                            <a href="#"><img src="assets/images/ad/ad-1.png" alt=""></a>
+                            <a href="#"><img src="{{ asset('frontend/assets/images/ad/ad-1.png') }}" alt=""></a>
                         </div>
                     </div>
                 </div>

@@ -2,9 +2,11 @@
 
 namespace App\Filament\Resources\NewsPostResource\Pages;
 
-use App\Filament\Resources\NewsPostResource;
 use Filament\Actions;
+use Filament\Notifications\Notification;
+use Livewire\Component;
 use Filament\Resources\Pages\EditRecord;
+use App\Filament\Resources\NewsPostResource;
 
 class EditNewsPost extends EditRecord
 {
@@ -17,5 +19,12 @@ class EditNewsPost extends EditRecord
             Actions\ForceDeleteAction::make(),
             Actions\RestoreAction::make(),
         ];
+    }
+
+    public function toDatabase(User $notifiable): array
+    {
+        return Notification::make()
+            ->title('Saved successfully')
+            ->getDatabaseMessage();
     }
 }
