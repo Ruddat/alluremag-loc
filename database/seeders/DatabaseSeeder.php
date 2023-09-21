@@ -31,5 +31,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::factory(10)->create();
+
+        \App\Models\NewsPost::factory()->count(50)->create();
     }
 }

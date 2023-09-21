@@ -22,6 +22,13 @@ class CreateNewsPost extends CreateRecord
             ->sendToDatabase(User::whereNot('id', auth()->user()->id)->get());
             //->send();
         ///return route('admin.news.all');
+
         return $this->previousUrl ?? $this->getResource()::getUrl('index');
     }
+
+    protected function afterSave():viod
+    {
+        $this->fillForm();
+    }
+
 }

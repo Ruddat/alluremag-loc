@@ -462,6 +462,7 @@
                                         <span>6</span>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>

@@ -4,67 +4,76 @@ namespace App\Filament\Resources;
 
 use Filament\Forms;
 use Filament\Tables;
+use Filament\Forms\Get;
+use App\Models\Category;
 use App\Models\NewsPost;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
+use App\Models\Subcategory;
 use Filament\Resources\Resource;
+use Illuminate\Support\Collection;
+use Filament\Forms\Components\Select;
+use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\TextColumn;
+use Illuminate\Database\Eloquent\Model;
 use Filament\Forms\Components\RichEditor;
 use Illuminate\Database\Eloquent\Builder;
+use Filament\Tables\Columns\BooleanColumn;
+use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\MarkdownEditor;
 use App\Filament\Resources\NewsPostResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use App\Filament\Resources\NewsPostResource\RelationManagers;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
+use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
 
 class NewsPostResource extends Resource
 {
     protected static ?string $model = NewsPost::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-m-shopping-bag';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('category_id')
-                    ->required()
-                    ->numeric(),
-                Forms\Components\TextInput::make('subcategory_id')
-                    ->numeric(),
+                Select::make('category_id')
+                ->options(Category::query()->pluck('category_name', 'id'))
+                ->live(),
+
+                Select::make('subcategory_id')
+                ->options(fn (Get $get): Collection => Subcategory::query()
+                ->where('category_id', $get('category_id'))
+                ->pluck('subcategory_name', 'id')),
+
+
                 Forms\Components\TextInput::make('user_id')
                     ->required()
                     ->numeric(),
                 Forms\Components\TextInput::make('news_title')
                     ->required()
                     ->maxLength(255),
+
                 Forms\Components\TextInput::make('news_title_slug')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\FileUpload::make('image')
-                    ->image()
-                    ->required(),
 
-                    RichEditor::make('news_details')
-                    ->toolbarButtons([
-                        'attachFiles',
-                        'blockquote',
-                        'bold',
-                        'bulletList',
-                        'codeBlock',
-                        'h2',
-                        'h3',
-                        'italic',
-                        'link',
-                        'orderedList',
-                        'redo',
-                        'strike',
-                        'undo',
-                    ])
+                TinyEditor::make('news_details')
                     ->required()
                     ->maxLength(65535)
                     ->columnSpanFull()
-                    ->fileAttachmentsDisk('s3')
-                    ->fileAttachmentsDirectory('attachments')
-                    ->fileAttachmentsVisibility('private'),
+                    ->fileAttachmentsDisk('admin-uploads')
+                    ->fileAttachmentsVisibility('public'),
 
+                SpatieMediaLibraryFileUpload::make('fotos')
+                    ->image()
+                    ->collection('slider')
+                    //->enableReordering()
+                    ->getUploadedFileNameForStorageUsing(function (TemporaryUploadedFile $file): string {
+                        return (string) str($file->getClientOriginalName())->prepend('alluremag-');
+                    })->reactive(),
 
                 Forms\Components\Textarea::make('tags')
                     ->required()
@@ -75,7 +84,8 @@ class NewsPostResource extends Resource
                     ->numeric(),
                 Forms\Components\TextInput::make('top_slider')
                     ->required()
-                    ->numeric(),
+                    ->numeric()
+                    ->default(1),
                 Forms\Components\TextInput::make('first_section_three')
                     ->required()
                     ->numeric(),
@@ -88,6 +98,8 @@ class NewsPostResource extends Resource
                 Forms\Components\TextInput::make('post_month')
                     ->required()
                     ->maxLength(255),
+
+
                 Forms\Components\TextInput::make('status')
                     ->required()
                     ->numeric()
@@ -99,17 +111,40 @@ class NewsPostResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('category_id')
-                    ->numeric()
+                Tables\Columns\TextColumn::make('category_id', 'category_name')
+                ->sortable()
+                ->rowIndex(),
+
+                Tables\Columns\TextColumn::make('category_id', 'name')
                     ->sortable(),
-                Tables\Columns\TextColumn::make('subcategory_id')
+
+                    Tables\Columns\TextColumn::make('subcategory_id')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('user_id')
                     ->numeric()
                     ->sortable(),
+                    IconColumn::make('slider')
+                    ->color(fn (string $state): string => match ($state) {
+                        'draft' => 'info',
+                        'reviewing' => 'warning',
+                        'published' => 'success',
+                        default => 'gray',
+                    }),
+                SpatieMediaLibraryImageColumn::make('fotos')
+                    ->collection('slider')
+                    ->conversion('feature-post-thumb')
+                    ->width(140)
+                    ->height(80),
+
+                TextColumn::make('author.name'),
                 Tables\Columns\TextColumn::make('news_title')
-                    ->searchable(),
+                    ->sortable()
+                    ->searchable()
+                    ->limit(10)
+                    ->tooltip(fn (Model $record): string => "By {$record->news_title}"),
+
+
                 Tables\Columns\TextColumn::make('news_title_slug')
                     ->searchable(),
                 Tables\Columns\ImageColumn::make('image'),

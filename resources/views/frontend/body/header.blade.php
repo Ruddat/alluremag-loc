@@ -1,5 +1,4 @@
 @php
-
 $cdate = new DateTime();
 @endphp
 
@@ -23,7 +22,8 @@ $breaking_news = App\Models\NewsPost::where('status',1)->where('breaking_news',1
                                 @foreach($breaking_news as $item)
                                 <div class="trending-item">
 
-                                    <p>{{ Str::limit(GoogleTranslate::trans($item->news_title, app()->getLocale()), 80) }}</p>
+                                    <p>{!! Str::limit(GoogleTranslate::trans($item->news_title, app()->getLocale()), 80) !!}</p>
+
 
                                 </div>
                                 @endforeach
@@ -52,7 +52,7 @@ $breaking_news = App\Models\NewsPost::where('status',1)->where('breaking_news',1
                 <div class="row align-items-center">
                     <div class="col-lg-4">
                         <div class="logo">
-                            <a href="index.html">
+                            <a href="/">
                                 <img src="{{ asset('frontend/assets/images/logo.png') }}" alt="">
                             </a>
                         </div>
@@ -81,7 +81,9 @@ $breaking_news = App\Models\NewsPost::where('status',1)->where('breaking_news',1
 
 
 
-
+        @php
+        $categories = App\Models\Category::orderBy('id', 'asc')->limit(7)->get();
+        @endphp
 
 
 
@@ -92,7 +94,29 @@ $breaking_news = App\Models\NewsPost::where('status',1)->where('breaking_news',1
                         <div class="header-menu">
                             <div class="stellarnav">
                                 <ul>
+                                    @foreach($categories as $category)
 
+                                    <li><a class="" href="{{ url('news/category/'.$category->id.'/'.$category->category_slug) }}">{{  GoogleTranslate::trans($category->category_name, app()->getLocale() )  }}</a>
+
+
+
+                                        @php
+                                        $subcategories = App\Models\Subcategory::where('category_id',$category->id)->orderBy('subcategory_name','ASC')->get();
+                                        @endphp
+
+                                    @if(!$subcategories->isEmpty())
+
+                                    <ul>
+                                        @foreach($subcategories as $subcategory)
+                                        <li> <a href="{{ url('news/subcategory/'.$subcategory->id.'/'.$subcategory->subcategory_slug) }} ">{{  GoogleTranslate::trans($subcategory->subcategory_name, app()->getLocale() )  }}</a></li>
+                                        @endforeach
+
+                                    </ul>
+                                    @else
+                                    @endif
+                                </li>
+
+                                @endforeach
 
 
 

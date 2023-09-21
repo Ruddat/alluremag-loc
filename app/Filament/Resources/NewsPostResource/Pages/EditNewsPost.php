@@ -27,4 +27,9 @@ class EditNewsPost extends EditRecord
             ->title('Saved successfully')
             ->getDatabaseMessage();
     }
+
+    protected function getRedirectUrl(): string
+    {
+    return $this->previousUrl ?? $this->getResource()::getUrl('index');
+    }
 }

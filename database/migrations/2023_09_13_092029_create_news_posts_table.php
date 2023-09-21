@@ -14,11 +14,17 @@ return new class extends Migration
         Schema::create('news_posts', function (Blueprint $table) {
             $table->id();
             $table->integer('category_id');
+            $table->string('category_name')->default(0);
             $table->integer('subcategory_id')->nullable();
             $table->integer('user_id');
+            $table->boolean('slider')
+            ->default(0)
+            ->comment('Startseite Oben');
             $table->string('news_title');
             $table->string('news_title_slug');
+            $table->string('breacking_news_title');
             $table->string('image');
+            $table->text('news_headline');
             $table->text('news_details');
             $table->text('tags');
             $table->integer('breaking_news');
@@ -28,6 +34,8 @@ return new class extends Migration
             $table->string('post_date');
             $table->string('post_month');
             $table->integer('status')->default(1);
+            $table->integer('view_count')->default(0);
+            $table->integer('comment_count')->default(0);
             $table->softDeletes();
             $table->timestamps();
         });

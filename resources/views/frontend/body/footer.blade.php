@@ -17,14 +17,28 @@
                     </div>
                 </div>
                 <div class="col-lg-5 col-md-7">
-                    <div class="footer-newaletter">
-                        <div class="input-box">
-                            <input type="text" placeholder="Your email address">
-                            <button type="button">{{  GoogleTranslate::trans('SIGN UP', app()->getLocale() )  }}</button>
-                        </div>
-                        <p>We hate spam as much as you do</p>
+
+
+                <aside class="wrapper__list__article">
+                    <h4 class="border_section">Newsletter</h4>
+                    <!-- Form Subscribe -->
+                    <div class="widget__form-subscribe bg__card-shadow">
+                        <h6>
+                            The most important world news and events of the day.
+                        </h6>
+                        <p><small>Get magzrenvi daily newsletter on your inbox.</small></p>
+                        <form action="" class="newsletter-form">
+                            @csrf
+                            <div class="input-group ">
+                                <input type="text" class="form-control" name="email"
+                                    placeholder="Your email address">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary newsletter-button" type="submit">sign up</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                </div>
+                </aside>
             </div>
         </div>
         <div class="footer-widget-area">
@@ -35,7 +49,8 @@
                             <div class="col-lg-6 col-md-6">
                                 <div class="widget widget-list">
                                     <div class="section-title section-title-2">
-                                        <h3 class="title">News categories</h3>
+                                        <h3 class="title">
+                                            {{ GoogleTranslate::trans('News categories', app()->getLocale()) }}</h3>
                                     </div>
                                     <div class="list d-flex justify-content-between">
                                         <ul>
@@ -115,7 +130,10 @@
                                                 <i class="fab fa-twitter"></i>
                                             </div>
                                             <div class="twitter-content">
-                                                <p>Cyber Monday Sale, Save 33% on Jannah theme during our year-end Sale, Purchase a new license for your next project… <a href="#">@newspark #technology https://dribbble.com/subash_chandra</a></p>
+                                                <p>Cyber Monday Sale, Save 33% on Jannah theme during our year-end Sale,
+                                                    Purchase a new license for your next project… <a
+                                                        href="#">@newspark #technology
+                                                        https://dribbble.com/subash_chandra</a></p>
                                                 <span>March 26, 2020</span>
                                             </div>
                                         </div>
@@ -124,7 +142,10 @@
                                                 <i class="fab fa-twitter"></i>
                                             </div>
                                             <div class="twitter-content">
-                                                <p>Cyber Monday Sale, Save 33% on Jannah theme during our year-end Sale, Purchase a new license for your next project… <a href="#">@newspark #technology https://dribbble.com/subash_chandra</a></p>
+                                                <p>Cyber Monday Sale, Save 33% on Jannah theme during our year-end Sale,
+                                                    Purchase a new license for your next project… <a
+                                                        href="#">@newspark #technology
+                                                        https://dribbble.com/subash_chandra</a></p>
                                                 <span>March 26, 2020</span>
                                             </div>
                                         </div>
@@ -153,7 +174,8 @@
                                                         <span>March 26, 2020</span>
                                                     </div>
                                                 </div>
-                                                <h4 class="title"><a href="#" tabindex="0">Nancy zhang a chinese busy woman and dhaka</a></h4>
+                                                <h4 class="title"><a href="#" tabindex="0">Nancy zhang a
+                                                        chinese busy woman and dhaka</a></h4>
                                                 <span>1</span>
                                             </div>
                                         </div>
@@ -167,7 +189,8 @@
                                                         <span>March 26, 2020</span>
                                                     </div>
                                                 </div>
-                                                <h4 class="title"><a href="#" tabindex="0">Success is not a good teacher failure makes you humble</a></h4>
+                                                <h4 class="title"><a href="#" tabindex="0">Success is not a
+                                                        good teacher failure makes you humble</a></h4>
                                                 <span>2</span>
                                             </div>
                                         </div>
@@ -181,7 +204,8 @@
                                                         <span>March 26, 2020</span>
                                                     </div>
                                                 </div>
-                                                <h4 class="title"><a href="#" tabindex="0">Cheap smartphone sensor could help you old food safe</a></h4>
+                                                <h4 class="title"><a href="#" tabindex="0">Cheap smartphone
+                                                        sensor could help you old food safe</a></h4>
                                                 <span>3</span>
                                             </div>
                                         </div>
@@ -195,7 +219,8 @@
                                                         <span>March 26, 2020</span>
                                                     </div>
                                                 </div>
-                                                <h4 class="title"><a href="#" tabindex="0">Class property employ ancho red multi humble</a></h4>
+                                                <h4 class="title"><a href="#" tabindex="0">Class property
+                                                        employ ancho red multi humble</a></h4>
                                                 <span>4</span>
                                             </div>
                                         </div>
@@ -209,7 +234,8 @@
                                                         <span>March 26, 2020</span>
                                                     </div>
                                                 </div>
-                                                <h4 class="title"><a href="#" tabindex="0">Best garden wing supplies for the horticu ltural</a></h4>
+                                                <h4 class="title"><a href="#" tabindex="0">Best garden wing
+                                                        supplies for the horticu ltural</a></h4>
                                                 <span>5</span>
                                             </div>
                                         </div>
@@ -223,9 +249,12 @@
                                     </div>
                                     <div class="service-item">
                                         <ul>
-                                            <li><a href="#"><i class="fal fa-mobile-android-alt"></i> On your mobile</a></li>
-                                            <li><a href="#"><i class="fal fa-microphone-alt"></i> On smart speakers</a></li>
-                                            <li><a href="#"><i class="fal fa-envelope"></i> Contact Newspark news</a></li>
+                                            <li><a href="#"><i class="fal fa-mobile-android-alt"></i> On your
+                                                    mobile</a></li>
+                                            <li><a href="#"><i class="fal fa-microphone-alt"></i> On smart
+                                                    speakers</a></li>
+                                            <li><a href="#"><i class="fal fa-envelope"></i> Contact Newspark
+                                                    news</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -256,3 +285,72 @@
 </div>
 
 <!--====== FOOTER PART ENDS ======-->
+
+    <!-- Scripts -->
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    })
+
+
+    // Add csrf token in ajax request
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $(document).ready(function() {
+
+        /** Subscribe Newsletter**/
+        $('.newsletter-form').on('submit', function(e) {
+            e.preventDefault();
+            $.ajax({
+                method: 'POST',
+                url: "{{ route('subscribe-newsletter') }}",
+                data: $(this).serialize(),
+                beforeSend: function() {
+                    $('.newsletter-button').text('loading...');
+                    $('.newsletter-button').attr('disabled', true);
+                },
+                success: function(data) {
+                    if (data.status === 'success') {
+                        Toast.fire({
+                            icon: 'success',
+                            title: data.message
+                        })
+                        $('.newsletter-form')[0].reset();
+                        $('.newsletter-button').text('sign up');
+
+                        $('.newsletter-button').attr('disabled', false);
+                    }
+                },
+                error: function(data) {
+                    $('.newsletter-button').text('sign up');
+                    $('.newsletter-button').attr('disabled', false);
+
+                    if (data.status === 422) {
+                        let errors = data.responseJSON.errors;
+                        $.each(errors, function(index, value) {
+                            Toast.fire({
+                                icon: 'error',
+                                title: value[0]
+                            })
+                        })
+                    }
+                }
+            })
+        })
+    })
+</script>

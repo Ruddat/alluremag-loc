@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use App\Models\Category;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -18,6 +19,24 @@ return new class extends Migration
             $table->softDeletes();
             $table->timestamps();
         });
+
+        Category::create([
+            'category_name' => 'Home',
+            'category_slug' => 'home',
+
+        ]);
+
+        Category::create([
+            'category_name' => 'World',
+            'category_slug' => 'world',
+
+        ]);
+
+        Category::create([
+            'category_name' => 'Sports',
+            'category_slug' => 'sports',
+
+        ]);
     }
 
     /**
