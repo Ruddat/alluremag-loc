@@ -13,6 +13,7 @@ use Awcodes\LightSwitch\Enums\Alignment;
 use Awcodes\LightSwitch\LightSwitchPlugin;
 use Filament\Http\Middleware\Authenticate;
 use JibayMcs\FilamentTour\FilamentTourPlugin;
+use pxlrbt\FilamentSpotlight\SpotlightPlugin;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Awcodes\FilamentQuickCreate\QuickCreatePlugin;
@@ -62,6 +63,7 @@ class AdminPanelProvider extends PanelProvider
                 FilamentLanguageSwitchPlugin::make()
                 ->renderHookName('panels::global-search.before'),
                 TranslationManagerPlugin::make(),
+                SpotlightPlugin::make(),
 
 
 

@@ -15,6 +15,7 @@
         "brian2694/laravel-toastr": "^5.57",
         "filament/filament": "3.0-stable",
         "filament/spatie-laravel-media-library-plugin": "3.0-stable",
+        "flowframe/laravel-trend": "^0.1.5",
         "guzzlehttp/guzzle": "^7.2",
         "hasnayeen/themes": "^3.0",
         "jibaymcs/filament-tour": "v3.1.0.2",
@@ -24,6 +25,7 @@
         "laravel/tinker": "^2.8",
         "league/flysystem-aws-s3-v3": "3.0",
         "mohamedsabil83/filament-forms-tinyeditor": "^2.0",
+        "pxlrbt/filament-spotlight": "^1.0",
         "stichoza/google-translate-php": "^5.1"
     },
     "require-dev": {

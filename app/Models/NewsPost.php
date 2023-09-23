@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
 use Illuminate\Database\Eloquent\Model;
@@ -15,9 +16,12 @@ class NewsPost extends Model implements HasMedia
 {
     use HasFactory;
     use SoftDeletes;
+
     use InteractsWithMedia;
 
     protected $guarded = [];
+
+
 
 
     public function registerMediaConversions(Media $media = null): void

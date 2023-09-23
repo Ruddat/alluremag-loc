@@ -21,8 +21,8 @@ return new class extends Migration
         });
 
         Category::create([
-            'category_name' => 'Home',
-            'category_slug' => 'home',
+            'category_name' => 'Politics',
+            'category_slug' => 'politics',
 
         ]);
 
@@ -35,6 +35,12 @@ return new class extends Migration
         Category::create([
             'category_name' => 'Sports',
             'category_slug' => 'sports',
+
+        ]);
+
+        Category::create([
+            'category_name' => 'Restaurant',
+            'category_slug' => 'restaurant',
 
         ]);
     }

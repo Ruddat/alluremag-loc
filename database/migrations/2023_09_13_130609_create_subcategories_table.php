@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use App\Models\Subcategory;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -18,6 +19,15 @@ return new class extends Migration
             $table->string('subcategory_slug');
             $table->timestamps();
         });
+
+        Subcategory::create([
+            'category_id' => '4',
+            'subcategory_name' => 'Foods',
+            'subcategory_slug' => 'foods',
+
+        ]);
+
+
     }
 
     /**

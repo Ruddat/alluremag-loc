@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 use App\Models\NewsPost;
-
+use Faker\Generator as Faker;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -26,17 +26,22 @@ class NewsPostFactory extends Factory
             'news_title_slug' => $this->faker->slug(),
             'news_title' => $this->faker->realText($maxNbChars = 100, $indexSize = 2),
             'news_headline' => $this->faker->realTextBetween($minNbChars = 160, $maxNbChars = 300, $indexSize = 1),
-            'breacking_news_title' => $this->faker->realText($maxNbChars = 100, $indexSize = 3),
+            'breaking_news_title' => $this->faker->realText($maxNbChars = 100, $indexSize = 3),
 
 
 
             'view_count' => $this->faker->randomNumber(5, true),
+            'visitor' => $this->faker->randomNumber(5, true),
 
 
   //          $table->string('news_title_slug');
     //        $table->string('image');
-              'image' => $this->faker->imageUrl(360, 360, 'animals', true, 'dogs', true),
+             // 'image' => $this->faker->imageUrl(360, 360, 'animals', true, 'dogs', true),
               'news_details' => $this->faker->realTextBetween($minNbChars = 160, $maxNbChars = 2200, $indexSize = 2),
+
+
+
+
               'tags' => $this->faker->sentence(3),
               'breaking_news' => $this->faker->boolean(),
               'top_slider' => $this->faker->boolean(),
@@ -45,7 +50,10 @@ class NewsPostFactory extends Factory
               'post_date' => $this->faker->dateTimeThisYear('+2 months'),
               'post_month' => $this->faker->monthName(),
 
-              'status' => $this->faker->boolean(),
+              'status' => $this->faker->boolean(1),
+
+              'is_share' => $this->faker->randomElement([0, 1]),
+              'is_comment' => $this->faker->randomElement([0, 1]),
 
               //         $table->text('tags');
    //         $table->integer('breaking_news');

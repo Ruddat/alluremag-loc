@@ -22,8 +22,8 @@ return new class extends Migration
             ->comment('Startseite Oben');
             $table->string('news_title');
             $table->string('news_title_slug');
-            $table->string('breacking_news_title');
-            $table->string('image');
+            $table->string('breaking_news_title')->nullable();
+         //   $table->string('image');
             $table->text('news_headline');
             $table->text('news_details');
             $table->text('tags');
@@ -33,6 +33,18 @@ return new class extends Migration
             $table->integer('first_section_nine');
             $table->string('post_date');
             $table->string('post_month');
+
+            $table->integer('visitor')
+            ->default(0)->comment('Nachrichten Besucher = Counter');
+            $table->integer('is_share')
+            ->default(1)->comment('News kann geteilt werden oder nicht');
+            $table->integer('is_comment')
+            ->default(0)->comment('News kann kommentiert werden');
+
+
+            $table->integer('autor_id')->default(0);
+            $table->integer('admin_id')->default(0);
+
             $table->integer('status')->default(1);
             $table->integer('view_count')->default(0);
             $table->integer('comment_count')->default(0);

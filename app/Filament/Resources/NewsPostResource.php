@@ -14,6 +14,7 @@ use Filament\Resources\Resource;
 use Illuminate\Support\Collection;
 use Filament\Forms\Components\Select;
 use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\TagsColumn;
 use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Model;
 use Filament\Forms\Components\RichEditor;
@@ -21,6 +22,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Filament\Tables\Columns\BooleanColumn;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\MarkdownEditor;
+use Filament\Forms\Components\SpatieTagsInput;
 use App\Filament\Resources\NewsPostResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
@@ -32,6 +34,8 @@ use Mohamedsabil83\FilamentFormsTinyeditor\Components\TinyEditor;
 class NewsPostResource extends Resource
 {
     protected static ?string $model = NewsPost::class;
+
+
 
     protected static ?string $navigationIcon = 'heroicon-m-shopping-bag';
 
@@ -52,9 +56,19 @@ class NewsPostResource extends Resource
                 Forms\Components\TextInput::make('user_id')
                     ->required()
                     ->numeric(),
+
                 Forms\Components\TextInput::make('news_title')
                     ->required()
                     ->maxLength(255),
+
+                Forms\Components\TextInput::make('breaking_news_title')
+
+                    ->maxLength(255),
+
+
+                    Forms\Components\TextInput::make('news_headline')
+
+                    ->maxLength(65535),
 
                 Forms\Components\TextInput::make('news_title_slug')
                     ->required()
@@ -75,10 +89,9 @@ class NewsPostResource extends Resource
                         return (string) str($file->getClientOriginalName())->prepend('alluremag-');
                     })->reactive(),
 
-                Forms\Components\Textarea::make('tags')
-                    ->required()
-                    ->maxLength(65535)
-                    ->columnSpanFull(),
+
+
+
                 Forms\Components\TextInput::make('breaking_news')
                     ->required()
                     ->numeric(),
@@ -141,13 +154,15 @@ class NewsPostResource extends Resource
                 Tables\Columns\TextColumn::make('news_title')
                     ->sortable()
                     ->searchable()
-                    ->limit(10)
+                    ->limit(20)
                     ->tooltip(fn (Model $record): string => "By {$record->news_title}"),
 
+                TagsColumn::make('tags')->separator(','),
 
-                Tables\Columns\TextColumn::make('news_title_slug')
+                Tables\Columns\TextColumn::make('breaking_news_title')
+                    ->limit(20)
                     ->searchable(),
-                Tables\Columns\ImageColumn::make('image'),
+
                 Tables\Columns\TextColumn::make('breaking_news')
                     ->numeric()
                     ->sortable(),
@@ -175,7 +190,7 @@ class NewsPostResource extends Resource
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-            ])
+            ])->defaultSort('updated_at', 'desc')
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
             ])

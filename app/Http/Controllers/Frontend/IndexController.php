@@ -23,6 +23,8 @@ class IndexController extends Controller
     {
         $expire = Carbon::now()->addMinutes(10);
 
+
+
         $newnewspost = Cache::remember('NewsPost', $expire, function() {
             return NewsPost::orderBy('id','DESC')->limit(8)->get();
         });
@@ -40,14 +42,45 @@ class IndexController extends Controller
             ->get();
         });
 
+        $news_post_popular = Cache::remember('news_post_popular', $expire, function() {
+            return NewsPost::orderBy('visitor','DESC')
+            ->with('media')
+            ->withWhereHas('media', function ($query) {
+                $query->where('collection_name', '=', 'slider');
+            })
+            ->limit(5)->get();
+        });
+
+        $latest_news_post = Cache::remember('latest_news_post', $expire, function() {
+            return NewsPost::orderBy('id','DESC')
+            ->with('media')
+            ->withWhereHas('media', function ($query) {
+                $query->where('collection_name', '=', 'slider');
+            })
+            ->limit(5)->get();
+        });
+
+        $trendy_news_post = Cache::remember('latest_news_post', $expire, function() {
+            return NewsPost::orderBy('created_at' , 'visitor','DESC')
+            ->with('media')
+            ->withWhereHas('media', function ($query) {
+                $query->where('collection_name', '=', 'slider');
+            })
+            ->limit(5)->get();
+        });
+
        return view('portal-frontend.pages.index', [
 
             'slider' => $slider,
             'newnewspost' => $newnewspost,
             'newspopular' => $newspopular,
+            'news_post_popular' => $news_post_popular,
+            'latest_news_post' => $latest_news_post,
+            'trendy_news_post' => $trendy_news_post,
+
         ]);
 
-      // return view('frontend.index',compact('newnewspost','newspopular'));
+
 
     } // End Method
 
@@ -73,6 +106,7 @@ class IndexController extends Controller
     public function NewsDetails($id,$slug){
 
         $expire = Carbon::now()->addMinutes(10);
+
         $news = NewsPost::findOrFail($id);
 
 
@@ -90,18 +124,40 @@ class IndexController extends Controller
 
         $news->increment('view_count');
 
+        $news->increment('visitor');
+
         //$newnewspost = NewsPost::orderBy('id','DESC')->limit(8)->get();
 
-        $newnewspost = Cache::remember('newnewspost', $expire, function() {
-            return NewsPost::orderBy('id','DESC')->limit(8)->get();
+
+        $news_post_popular = Cache::remember('news_post_popular', $expire, function() {
+            return NewsPost::orderBy('visitor','DESC')
+            ->with('media')
+            ->withWhereHas('media', function ($query) {
+                $query->where('collection_name', '=', 'slider');
+            })
+            ->limit(5)->get();
+        });
+
+        $latest_news_post = Cache::remember('latest_news_post', $expire, function() {
+            return NewsPost::orderBy('id','DESC')
+            ->with('media')
+            ->withWhereHas('media', function ($query) {
+                $query->where('collection_name', '=', 'slider');
+            })
+            ->limit(5)->get();
+        });
+
+        $trendy_news_post = Cache::remember('latest_news_post', $expire, function() {
+            return NewsPost::orderBy('id','visitor','DESC')
+            ->with('media')
+            ->withWhereHas('media', function ($query) {
+                $query->where('collection_name', '=', 'slider');
+            })
+            ->limit(5)->get();
         });
 
 
-        $newspopular = NewsPost::orderBy('view_count','DESC')->limit(8)->get();
-
-
-
-        return view('portal-frontend.pages.post-details-1',compact('news','tags_all','relatedNews','newnewspost','newspopular'));
+        return view('portal-frontend.pages.post-details-1',compact('news','tags_all','relatedNews', 'trendy_news_post', 'latest_news_post','news_post_popular'));
 
     }// End Method
 
